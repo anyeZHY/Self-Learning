@@ -7,8 +7,9 @@ This repository includes all the courses I learned by myself. You could find the
 
 ## What I've learned
 
-- CS231n: Deep Learning for Computer Vision, Stanford University.
-  - Course website: [http://cs231n.stanford.edu](http://cs231n.stanford.edu)
+#### CS231n: Deep Learning for Computer Vision, Stanford University.
+
+- Course website: [http://cs231n.stanford.edu](http://cs231n.stanford.edu)
 
 ## What I am learning
 
