@@ -1,0 +1,3 @@
+[submodule "CS231n"]
+	path = CS231n
+	url = https://github.com/anyeZHY/2021-CS231n
