@@ -1,3 +1,6 @@
 [submodule "CS231n"]
 	path = CS231n
 	url = https://github.com/anyeZHY/2021-CS231n
+[submodule "EE367"]
+	path = EE367
+	url = https://github.com/anyeZHY/EE367
