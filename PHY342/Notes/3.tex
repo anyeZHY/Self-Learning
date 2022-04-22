@@ -1,0 +1,31 @@
+\section{Formalism}
+\subsection{Gerneralized Statistical Interpretation}
+First we assume the spectrum of the wave funtion is discrete, we have
+\[
+	\angbr{Q} =\sum_{n'}\sum_nc^*_{n'}c_nq_n\braket{f_{n'}}{f_n}
+	=\sum_n\abs{c_n}^2q_n
+\] where $q_n$ is the eigenvalue of operator  $\hat{Q}$ and $\Psi(x,t)=\sum_nc_n(t)f_n(x)$.
+What about momentum?
+\[
+	\Phi(p,t)=\frac{1}{\sqrt{2\pi\hbar}}\int_{-\infty}^{\infty} e^{-\flatfrac{ipx}{\hbar}}\Psi(x,t) \,\dd x
+\] and 
+\[
+    \Phi(x,t)=\frac{1}{\sqrt{2\pi\hbar}}\int_{-\infty}^{\infty} e^{-\flatfrac{ipx}{\hbar}}\Phi(p,t) \,\dd p
+.\] 
+\subsection{Uncertainty Principle}
+\begin{thm}[generalized uncertainty principle]
+	\[
+		\sigma_A^2\sigma_B^2\ge \qty(\frac{1}{2i}\angbr{\qty[\hat{A},\hat{B}]})^2
+	.\] 
+\end{thm}
+How to interpret $ \Delta t$?
+\begin{defi}
+ 	\[
+		\Delta t\equiv\frac{\sigma_Q}{\abs{\dv*{\angbr{Q}}{t}}}
+ 	,\] where
+	\[
+		\dv{\angbr{Q}}{t}=
+		\frac{i}{\hbar}\angbr{\qty[\hat{H},\hat{Q}]}+\angbr{\pdv{\hat{Q}}{t}}
+	.\] 
+\end{defi}
+I recommend you to learn \textbf{Hilbert space} and \textbf{Dirac notation}.

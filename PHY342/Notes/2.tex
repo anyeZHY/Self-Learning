@@ -1,0 +1,294 @@
+\section{Time-independent Schrodinger Equation}
+\subsection{Stationary states}
+We look for solutions that are simple products,
+\[
+	\Psi(x,t)=\psi(x)\varphi(t)
+	.\]
+
+\begin{thm}
+	By the method of separation of variables,
+	\[
+		-\frac{\hbar^2}{2m}\dv[2]{\psi}{x}+V\psi=E\psi
+	\] and
+	\[
+		\varphi(t)=e^{-\flatfrac{iEt}{\hbar}}
+		.\]
+\end{thm}
+
+The first is called the \textbf{time-independent Schrodinger equation}.
+
+\begin{defi}[Hamiltonian]
+	In classical mechanics, the total energy (kinetic plus potential) is called Hamiltonian:
+	\[
+		H(x,p)=\frac{p^2}{2m}+V(x)
+		.\]
+	Now we introduce \textbf{Hamiltonian operator}:
+	\[
+		\hat{H}=-\frac{\hbar^2}{2m}\pdv[2]{x}+V(x)
+		.\]
+\end{defi}
+Thus the time-independent Schrodinger EQ. can be written
+\[
+	\hat{H}\psi=E\psi
+\]
+which is \textbf{IMPORTANT}.
+
+\begin{remark}
+	Intriguingly and intuitively,
+	\[
+		\angbr{H}=E
+		.\]
+	Also, if the equation yields an infinite collection of solutions $(\psi_1(x),\psi_2(x),\cdots)$, each with its associated value of the separation constant $(E1,E2,\cdots)$; thus the wave function is:
+	\[
+		\Psi(x,t)=\sum_{n=1}^{+\infty}c_n\psi_n(x)e^{-iE_nt /\hbar}
+		.\]
+	\textbf{Particularly},
+	\begin{equation*}
+		E_n\ge 0 \text{ for all }n
+		\label{E_greater_than_zero}
+	\end{equation*}
+\end{remark}
+
+\subsection{The infinite square well}
+Suppose
+\[
+	V(x)=
+	\begin{cases}
+		0      & \mbox{if }0\le x\le a \\
+		\infty & \mbox{otherwise}
+	\end{cases}
+	.\]
+
+\begin{thm}
+	Inside the well, we have
+	\[
+		E_n=\frac{n^2\pi^2\hbar^2}{2ma^2}
+	\]
+	and
+	\[
+		\psi_n(x)=\sqrt{\frac{2}{a}}\sin\qty(\frac{n\pi}{a}x)
+		.\]
+\end{thm}
+
+\begin{prt}
+	$\psi_n(x)$ has some interesting and important porperties:
+	\begin{enumerate}
+		\item They are alternately even and odd, with the respect to the center of the well.
+		\item They are mutually orthogonal (i.e., $\displaystyle \int \psi_m(x)^*\psi_n(x) \,\dd x = \delta_{mn}$)\\
+		      where $\delta_{mn}$ is \textbf{Kronecker delta}:
+		      \[
+			      \delta_{mn}=
+			      \begin{cases}
+				      0, & \mbox{if }m\ne n \\
+				      1, & \mbox{if }m=n
+			      \end{cases}
+			      .\]
+		\item They are complete by Dirichlet's theorem.
+	\end{enumerate}
+\end{prt}
+
+\subsection{The harmonic oscillator}
+Let
+\[
+	V(x)=\frac{1}{2}m\omega^2x^2
+	.\]
+
+Here I will introduce 2 entirely different approaches to this problem.
+The first is a diabolically clever algebraic technique and the second is a straitforward ``brute force'' solution.
+
+\subsubsection{Algebraic method}
+To begin with, let's rewrite the EQ. in a more suggestive form:
+\[
+	\frac{1}{2m}\qty[\qty(-i\hbar\dv{x})^2+\qty(m\omega x)^2]\psi=E\psi
+	.\]
+The idea is to factor the term in square brackets:
+\[
+	u^2+v^2=(u-iv)(u+iv)
+	.\]
+
+\begin{defi}[Ladder operator]
+	\[
+		\hat{a}_\pm=\frac{1}{\sqrt{2\hbar m\omega}}(\mp i\hat{p}+m\omega x)
+		.\]
+\end{defi}
+
+\begin{defi}[Commutator]
+	The commutator of operators $\hat{A}$ and $\hat{B}$ is
+	\[
+		\qty[\hat{A},\hat{B}]\deq\hat{A}\hat{B}-\hat{B}\hat{A}
+		.\]
+\end{defi}
+
+\begin{prt}
+	\[
+		\qty[\hat{a}_-,\hat{a}_+]=1
+		.\]
+\end{prt}
+
+\begin{thm}
+	If $\psi$ satisfies the Schrodinger's EQ. with energy $E$, then $\hat{a}_+\psi$ satisfies the Schrodinger's EQ. with energy $E+\hbar\omega$:
+	\[
+		\hat{H}\psi=E\psi\Longrightarrow\hat{H}\qty(\hat{a}_+\psi)=(E+\hbar\omega)\qty(\hat{a}_+\psi)
+		.\]
+	Similarly,
+	\[
+		\hat{H}\psi=E\psi\Longrightarrow\hat{H}\qty(\hat{a}_-\psi)=(E-\hbar\omega)\qty(\hat{a}_-\psi)
+		.\]
+\end{thm}
+\begin{prf}
+	\[
+		\hat{H}=a_+a_-+\frac{1}{2}\hbar\omega
+		.\]
+\end{prf}
+
+Here, then, is a wonderful machine for generating new solutions-----if we could just find one solution. Thus, we call $\hat{a}_+$ raising operator and $\hat{a}_-$ lowering operator.
+
+But what if I apply the lowering operator \textbf{repeatly}? We will reach a state with energy less than zero. By \ref{E_greater_than_zero}, there is \textbf{NO} guarantee that it will be normalized.
+
+\begin{prp}
+	Thus, there occurs a ``lowest rung'' $\psi_0$ such that
+	\[
+		\hat{a}_-\psi_0=0
+		.\]
+\end{prp}
+
+\begin{thm}
+	\[
+		\psi_0(x)=A_0e^{-\flatfrac{m\omega}{2\hbar}x^2}
+	\] and
+	\[
+		E_0=\frac{1}{2}\hbar\omega
+		.\]
+	Thus we could get
+	\[
+		\psi_n(x)=A_n(a_+)^ne^{-\flatfrac{m\omega}{2\hbar}x^2},\mbox{ with }E_n=\qty(n+\frac{1}{2})\hbar\omega
+	\]
+	where $A_n$ are used for normalization.
+\end{thm}
+
+\begin{thm}$\psi_n$ and $\psi_{n+1}$ should satisfy:
+	\[
+		\begin{cases}
+			a_+\psi_n=i\sqrt{(n+1)\hbar\omega} \\[9pt]
+			a_-\psi_n=-i\sqrt{n\hbar\omega}\psi_{n-1}
+		\end{cases}
+		.\]
+\end{thm}
+\begin{prf}
+	\[
+		\int_{-\infty}^{\infty} \abs{a_+\psi_n}^2 \,\dd x=(n+1)\hbar\omega
+	\]
+	and
+	\[
+		\int_{-\infty}^{\infty} \abs{a_-\psi_n}^2 \,\dd x=n\hbar\omega
+		.\]
+\end{prf}
+
+Ultimately,
+\[
+	A_n=\qty(\frac{m\omega}{\pi\hbar})^{\flatfrac{1}{4}} \frac{(-i)^n}{\sqrt{n!(\hbar\omega)^n}}
+	.\]
+
+\subsubsection{Analytic method}
+Things look a little cleaner if we introduce the dimensionless variables
+\[
+	\xi=\sqrt{\frac{m\omega}{\hbar}}x\mbox{ and }K=\frac{2E}{\hbar\omega}
+	.\]
+
+In terms of $\xi$ and  $K$, the Schrodinger equation reads
+\[
+	\dv[2]{\psi}{\xi}=(\xi^2-K)\psi
+	.\]
+To begin with, consider that at very large $\xi$, $\xi^2$ completely dominates over the constant $K$, so in this regime $\dv*[2]{\psi}{\xi}=\xi^2\psi$, which means that $\psi\Longrightarrow Ae^{\flatfrac{\xi^2}{2}}+Be^{-\flatfrac{\xi^2}{2}}$.
+Thus we let $\psi=h(\xi)e^{-\flatfrac{\xi^2}{2}}$.
+
+Plugging $\psi$ into Schordinger EQ., we have
+\[
+	h(\xi)=\sum_{n=0}^\infty a_n\xi^n\mbox{ and }a_{n+2}=\frac{2n+1-K}{(n+1)(n+2)}
+	.\]
+
+For physically acceptable solutions (normalizable solutions), then, we must have $K=2n+1$.
+
+Finally,
+\[
+	\psi_n(x)=
+	\qty(\frac{m\omega}{\pi\hbar})^{\flatfrac{1}{4}}
+	\frac{1}{\sqrt{2^nn!}}H_n(\xi)e^{-\flatfrac{\xi^2}{2}}
+\] where $H_n$ is the \textbf{Hermite polynomials}.
+
+The first four stationary states of the harmonic oscillator are as follows.
+\begin{figure}[H]
+	\centering
+	\begin{minipage}[b]{0.49\linewidth}
+		\begin{tikzpicture}
+			\begin{axis}[samples=100,domain= -pi : pi ,restrict y to domain = -pi : pi]
+				\addplot[blue] plot ({\x},{max(min(exp(-\x^2), pi), -pi)});
+			\end{axis}
+		\end{tikzpicture}
+	\end{minipage}
+	\begin{minipage}[b]{0.49\linewidth}
+		\begin{tikzpicture}
+			\begin{axis}[samples=100,domain= -pi : pi ,restrict y to domain = -pi : pi]
+				\addplot[blue] plot ({\x},{max(min(\x*exp(-\x^2), pi), -pi)});
+			\end{axis}
+		\end{tikzpicture}
+	\end{minipage}
+	\begin{minipage}[b]{0.49\linewidth}
+		\begin{tikzpicture}
+			\begin{axis}[samples=100,domain= -pi : pi ,restrict y to domain = -pi : pi]
+				\addplot[blue] plot ({\x},{max(min((4*\x^2-2)*exp(-\x^2), pi), -pi)});
+			\end{axis}
+		\end{tikzpicture}
+	\end{minipage}
+	\begin{minipage}[b]{0.49\linewidth}
+		\begin{tikzpicture}
+			\begin{axis}[samples=100,domain= -5 : 5 ,restrict y to domain = -5 : 5]
+				\addplot[blue] plot ({\x},{max(min((8*\x^3-12*\x)*exp(-\x^2), 5), -5)});
+			\end{axis}
+		\end{tikzpicture}
+	\end{minipage}
+\end{figure}
+
+\subsection{The Free Particle}
+
+We turn next to what should have been the simplest case of all: the free particle. The time Schrodinger Eq. reads:
+\[
+	-\frac{\hbar^2}{2m}\dv[2]{\psi}{x}=E\psi
+	.\]
+Let $k\equiv\sqrt{\flatfrac{2mE}{\hbar}}$, we have
+\[
+	\Psi_k(x,t)=Ae^{i(kx-\flatfrac{\hbar k^2t}{2m})}
+	.\]
+\begin{remark}
+	The speed of these waves is:
+	\[
+		v_{\mathrm{quantum}}=\sqrt{\flatfrac{E}{2m}}=0.5v_{\mathrm{classical}}
+	\]
+	And
+	\[
+		\int_{-\infty}^{\infty} \Psi_k^*(x,t)\Psi_k(x,t) \,\dd x=+\infty
+		,\] which means that a free particle cannot exist in a stationart state.
+\end{remark}
+\begin{thm}
+	The general solution to the time-independent Schrodinger EQ. is still a linear combination of separable solutions:
+	\[
+		\Psi(x,t)=\frac{1}{\sqrt{2\pi}}
+		\int_{-\infty}^{\infty} \phi(k)e^{i(kx-\flatfrac{\hbar k^2t}{2m})} \,\dd k
+		.\]
+\end{thm}
+Now this wave function can be normalized for appropriated $\phi(k)$. We call it a \textbf{wave packet}.
+\begin{defi}[phase velocity and group velocity]
+	For the wave function:
+	\[
+	    \Psi(x,t)=\frac{1}{\sqrt{2\pi}}
+		\int_{-\infty}^{\infty} \phi(k)e^{i(kx-\omega t)} \,\dd k
+	.\] 
+	We define:
+	\[
+		v_{\mathrm{phase}}=\frac{\omega}{k},\ v_{\mathrm{group}}=\dv{\omega}{k}
+	.\] 
+\end{defi}
+
+
+
+

@@ -1,0 +1,85 @@
+\section{The Wave Function}
+
+What we are looking for is the \textbf{wave function} $\*\Psi$.
+\begin{law}[Schrodinger Equation]
+	\[
+		i\hbar\pdv{\Psi}{t}=-\frac{\hbar^2}{2m}\pdv[2]{\Psi}{x}+V\Psi
+	.\]
+\end{law}
+
+For simplicity, we always rewrite it as:
+\[
+    i\hbar\partial_t\Psi=-\frac{\hbar^2}{2m}\partial_x^2\Psi+V\Psi
+.\]
+
+Born's statistical interpretation:
+\[
+	\int_{a}^{b} \abs{\Psi(x,t)}^2 \,\dd x=\text{probability of finding the particle between $a$ and $b$ at time $t$}
+	.\]
+
+\begin{law}[Normalization]
+	\[
+		\int_{-\infty}^{\infty} \abs{\Psi(x,t)}^2 \,\dd x = 1
+		.\]
+\end{law}
+
+\begin{prp}
+	The wave function will always stay NORMALIZED.
+	\[
+		\dv{t}\int_{-\infty}^{\infty} \abs{\Psi(x,t)}^2 \,\dd x = 0
+		.\]
+\end{prp}
+
+\begin{prf}By Schrodinger EQ.,
+	\[
+		\LHS=\eval{\frac{i\hbar}{2m}\qty(\Psi^*\pdv{\Psi}{x}-\pdv{\Psi^*}{x}\Psi)}_{-\infty}^{+\infty}
+		.\]
+\end{prf}
+
+\begin{defi}
+	\[
+		\angbr{x} \deq \int_{-\infty}^{\infty} x\abs{\Psi}^2 \,\dd x
+	\]
+	and
+	\[
+		\angbr{p} \deq m\dv{\angbr{x}}{t}
+		.\]
+\end{defi}
+
+\begin{thm}
+	\[
+		\angbr{x}=\int \Psi^*(x)\Psi \,\dd x
+	\]
+	and
+	\[
+		\angbr{p}=\int \Psi^*\qty(-i\hbar\pdv{x})\Psi \,\dd x
+		.\]
+\end{thm}
+
+\begin{remark}[Operator]
+	We say that the operator $x$ represents position, and the operator $-i\hbar\pdv*{x}$ represents momentum. Also,
+	\[
+		\angbr{Q(x,p)}=\int_{-\infty}^{\infty} \Psi^*\qty[Q(x,-i\hbar\pdv{x})]\Psi \,\dd x
+	.\] 
+\end{remark}
+\begin{prt}
+	Operators do \textbf{NOT}, in general, commute. For example, $\hat{x}\hat{p}\ne \hat{p}\hat{x}$, i.e., 
+	\[
+		\exists\mbox{ a function }f,\ \mbox{s.t. }(\hat{x}\hat{p})f\ne (\hat{p}\hat{x})f
+.\]
+\end{prt}
+
+\begin{thm}[de Broglie formula]
+	The wave length is related to the momentum of the particle:
+	\[
+		p=\frac{h}{\lambda}=\frac{2\pi\hbar}{\lambda}
+	.\] 
+\end{thm}
+
+\begin{thm}[Heisenberg's uncertainty principle]
+	\[
+	    \sigma_x\sigma_p\ge \frac{\hbar}{2}
+	.\] 
+\end{thm}
+
+
