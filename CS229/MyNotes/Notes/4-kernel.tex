@@ -1,0 +1,40 @@
+\section{Kernel Method}
+Now we will introduce a function $\phi(x):\,\RR^d\mapsto \RR^p$ mapping the attributes to the features.
+\subsection{LMS with Features}
+Suppose that $\theta=\sum_{i=1}^n\beta_ix^i$. By updating rules of gradient descent,
+\[
+	\begin{aligned}
+		\theta&:=
+		\theta+\alpha\sum_{i=1}^n\qty[y^i-\theta^T\phi(x^i)]\phi(x^i)
+		\\&=
+		\sum_{i=1}^n\underbrace{\qty{\beta_i+\alpha\qty[y^i-\theta^T\phi(x^i)]}}_{\text{new }\beta}\phi(x^i)
+	\end{aligned}
+\] Then $i\in\{1,\cdots,n\}$:
+\[
+	\beta_i:=\beta_i+\alpha\qty[y^i-\sum_{j=1}^n\beta_j\phi(x^j)^T\phi(x^i)]
+	=\beta_i+\alpha\qty[y^i-\sum_{j=1}^n\beta_jK(\phi(x^j),\phi(x^i))]
+\] where
+\[
+	K(x,z)\defeq \inner{\phi(x)}{\phi(z)}
+.\] 
+\begin{remark}
+	\textbf{Kernel} is a corresponding to the feature map $\phi$ as a function that maps $\+X\times\+X\mapsto \RR$.
+\end{remark}
+
+\subsection{Properties of Kernels}
+\begin{defi}[Gaussian kernel]
+	\[
+		K(x,z)=\exp(-\frac{\norm{x-z}^2}{2\sigma^2})
+	.\] 
+	The gaussian kernel is corresponding to an \textbf{infinite} dimensional feature mapping $\phi$. Also, $\phi$ lives in Hilbert space.
+\end{defi}
+
+\begin{thm}
+	The corresponding kernel matrix $K\in \RR^{n\times n}$ is symmetric positive semidefinite.
+\end{thm}
+
+\begin{thm}[Mercer Theorem]
+	Let $K\,:\,\RR^d\times\RR^d\mapsto \RR$ be given. 
+	Then for $K$ ti be a valide Mercer Kernel, it is necessary and sufficient that for any $\qty{x^{1},\cdots,x^{n}},(n<\infty)$, the correspibonding kernel matrix is symmetic positive semidefinite.
+	Nota Bene: the generalized form involve $L^2$ functions.
+\end{thm}

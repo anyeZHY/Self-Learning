@@ -1,0 +1,99 @@
+\section{Regression}
+
+\subsection{Linear Regression}
+
+The hypothesis class of linear regression predictors is simply the set of linear functions,
+\[
+	\+H_{reg}=\set{\*x\mapsto \angbr{\*w,\*x}+b:\*w\in\RR^d,b\in\RR}
+.\] 
+
+Intuitively, 
+\[
+	\+L_\+S(h)=\frac{1}{m}\sum_{i=1}^m(h(\*x)-\*y)^2\mbox{, }\forall h\in\+H_{reg}
+.\]
+
+To minimize the loss function, we need to solve $A\*w=\*b$ where $A\deq\sum\*x_i\*x_i^T=XX^T$ and $\*b\deq\sum y_i\*x_i=X^T\*y$.
+If $A$ is invertible then the solution is $w=A^{-1}\*b$.
+
+\begin{thm}
+	\[
+		\omega=(X^TX)^{-1}X^T\*y
+	.\] 
+\end{thm}
+
+If the training instances do not span the entire space of $\RR^d$ then $A$ is not invertible.
+
+\begin{thm}
+	Using $A$'s eigenvalue decomposition,we could write $A$ as $VD^+V^T$ where $D$ is a diagnonal matrix and  $V$ is an orthonormal matrix. Define $D^+$ to be the diagonal matrix such that $D^+_{i,i}=0$ if  $D_{i,i}=0$ otherwise  $D^+_{i,i}=\flatfrac{1}{D_{i,i}}$. Then,
+	\[A\*{\hat{w}}=\*b\]
+	where $\*{\hat{w}}=VD^+V^T\*b$
+\end{thm}
+\begin{prf}
+	\[
+		A\hat{\omega}=AA^+\*b=VDV^TVD^+V^T\*b=VDD^+V^T\*b=\sum_{i:D_{i,i}\ne 0}\*v_i\*v_i^T\*b
+	.\]
+	That is, $A\hat{\omega}$ is the projection of $b$ onto the span of those vectors $v_i$ for which $D_{i,i}\ne0$. Since the linear span of $x_1,\cdots,x_m$ is the same as the linear span of those $v_i$, and $b$ is in the linear span of the $x_i$, we obtain that $A\hat{w} = b$, which concludes our argument.
+\end{prf}
+
+\begin{remark}
+	Indeed we always use the \textbf{Gradient Descent} method to optimize the loss function.
+\end{remark}
+
+Linear regression for polynomial regression tasks $\+H^n_{poly}=\set{x\mapsto p(x)}$ where $\psi(x)=(1,x,x^2,\cdots,x^n)$ and $p(\psi(x))=a_0+a_1x+a_2x^2+\cdots+a_nx^n$.
+
+\subsection{Ridge Regression}
+
+To ameliorate the effect of the invertible matrix, we could introduce the regularization.
+
+\begin{defi}[Ridge Regularized Loss]
+	\[
+		R(w)=
+		\lambda\norm{w}^2
+	.\]
+\end{defi}
+
+Now the loss function reads:
+\[
+	\+L=\+L_\+S(w)+R(w)=
+	\frac{1}{m}\sum_{i=1}^m(h(\*x)-\*y)^2+\lambda\norm{w}^2
+.\] 
+Hence, the solution to ridge regression becomes
+\[
+	\*w=(2\lambda mI+ A)^{-1}
+.\] 
+\begin{thm}[The stability of regularization]
+	Let $\+D$ be a distribution over  $\+X\times[-1\times 1]$, where  $\+X=\qty{\*x\in\RR^d:\norm{\*x}\le 1}$. Let $\+H=\qty{\*w\in\RR^d:\norm{\*w}\le B}$. For any $\varepsilon\in(0,1)$, let $m\ge \flatfrac{150B^2}{\varepsilon^2}$. Then applying the ridge regression algorithm with parameter $\lambda=\flatfrac{\varepsilon}{3B^2}$ satisfies
+	\[
+		\EE_{S\sim\+D^m}\qty[L_D(A(S))]\le \min_{\*w\in\+H}L(D)+\varepsilon
+	.\] 
+\end{thm}
+
+\subsection{Lasso Regression}
+\begin{defi}[Lasso Regularized Loss]
+	\[
+		R(w)=
+		\lambda\norm{w}_1^2
+	.\]
+\end{defi}
+Under some assumptions on the distribution and the regularization parameter $\lambda$, the LASSO will find sparse solutions
+
+\subsection{Logistic Regression}
+The hypothesis class is:
+\[
+	H_{sig}=\qty{x\mapsto \mathrm{sigmoid}(\*w\*x):\*w\in\RR^d}
+\] where $\mathrm{sigmoid}(s)=\flatfrac{1}{[1+\exp(-s)]}$.
+The loss function is
+\[
+	\+L=\frac{1}{m}\sum_{i=1}^m\log\qty[1+\exp(-y_i\*w\*x_i)]
+.\]
+\begin{remark}Optimization in logistic regression
+	\begin{itemize}
+		\item 
+			The advantage of the logistic loss function is that it is a convex function with respect to $\*w$.
+		\item
+			No close form solution.
+		\item 
+			Identical to the problem of finding a Maximum Likelihood Estimator.
+	\end{itemize}
+\end{remark}
+

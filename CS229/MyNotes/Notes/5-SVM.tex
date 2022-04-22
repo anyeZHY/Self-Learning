@@ -1,0 +1,73 @@
+\section{Support Vector Machines}
+SVMs are among the best (and many believe are indeed the best) “off-the-shelf” supervised learning algorithms.
+So, be \textbf{self-motivated} in this section.
+\subsection{Hard-SVM}
+\textbf{Hard-SVM} is the learning rule in which we return an ERM hyperplane that separates the training set with the largest possible margin. The Hard-SVM rule is
+\[
+	\argmax_{(w,b):\norm{w}=1}\min_{i\in[m]}\abs{w^Tx^i+b}
+	\ \ \ 
+	\text{s.t. }\forall i, y^i\qty(w^Tx^i+b)\ge 1
+.\]
+Equivalently,
+\begin{equation}
+	\argmax_{(w,b):\norm{w}=1}\min_{i\in[m]}y^i\qty(w^Tx^i+b)
+	\label{naive_svm}
+\end{equation}
+Next, we give another equivalent formulation of the Hard-SVM rule as a quadratic optimization problem.\footnote{A quadratic optimization problem is an optimization problem in which the objective is a convex quadratic function and the constraints are linear inequalities.}
+\begin{md}
+	Input: $(x^1,^1),\cdots,(x^m,y^m)$
+
+	Solve:
+	\[
+		(w_0,b_0)=\argmin_{(w,b)}\norm{w}^2
+		\ \ \ 
+		\text{s.t. }\forall i, y^i\qty(w^Tx^i+b)\ge 1
+	.\]
+
+	Output: $\hat{w}=\flatfrac{w_0}{\norm{w_0}}$, $\hat{b}=\flatfrac{b_0}{\norm{w_0}}$
+\end{md}
+\begin{lemma}
+	The output of Hard-SVM is a solution of Equation (\ref{naive_svm}).
+\end{lemma}
+\begin{prf}
+	Let ($w_1$, $b_1$) be a solution of Equation (\ref{naive_svm}) and $\gamma_1=\min_{i\in[m]}y_i(w_1^{T}x^i+b_1)$. Then we have
+	\[
+		y^i\qty(\frac{w_1}{\gamma_1}^Tx^i+\frac{b_1}{\gamma_1})\ge 1
+	.\] 
+	Hence $\norm{w_0}\le \norm{\flatfrac{w_1}{\gamma_1}}=\flatfrac{1}{\gamma^*}$.
+	It follows that for all $i$,
+	 \[
+		 y^i(\hat{w}^Tx^i+\hat{b})\ge \frac{1}{\norm{w_0}}\ge \gamma_1
+	.\] 
+	Since $\norm{\hat{w}} = 1$ we obtain that $(\hat{w},\hat{b})$ is an optimal solution of Equation (\ref{naive_svm}).
+\end{prf}
+\subsubsection{The Sample Complexity of Hard-SVM*}
+\begin{defi}[Separability]
+	Let $\+D$ be a distribution over $\RR^d \times \{\pm1\}$.
+	We say that $\+D$ is separable with a $(\gamma,\rho)$-margin if there exists $(w^*,b^*)$ such that $\norm{w^*} = 1$ and such that with probability 1 over the choice of $(x, y) \sim \+D$ we have that $y(w^{*T}x+ b^*)\ge \gamma$ and $\norm{x}\le  \rho$. 
+\end{defi}
+\begin{thm}
+	Let $\+D$ be a distribution over $\RR^d\times\{\pm1\}$ that satisfies the $(\gamma,\rho)$-separability with margin assumption using a homogenous halfspace.
+	Then, with probability of at least $1 - \delta$ over the choice of a training set of size m, the 0-1 error of the output of Hard-SVM is at most
+	\[
+		\sqrt{\frac{4(\flatfrac{\rho)}{\gamma^2}}{m}}+\sqrt{\frac{2\log(\flatfrac{2}{\delta})}{m}}
+	.\] 
+	
+\end{thm}
+\subsection{Soft-SVM and Norm Regularization}
+\begin{md}
+	Input: $(x^1,^1),\cdots,(x^m,y^m)$
+
+	Solve:
+	\[
+		(w_0,b_0)=\argmin_{(w,b)}\norm{w}^2
+		\ \ \ 
+		\text{s.t. }\forall i, y^i\qty(w^Tx^i+b)\ge 1
+	.\]
+
+	Output: $\hat{w}=\flatfrac{w_0}{\norm{w_0}}$, $\hat{b}=\flatfrac{b_0}{\norm{w_0}}$
+\end{md}
+\subsubsection{The Sample Complexity of Soft-SVM*}
+\subsection{Duality}
+\subsection{Implementing Soft-SVM Using SGD}
+

@@ -1,0 +1,54 @@
+\section{Foundations}
+\subsection{Model evaluation:}
+Hold-out, cross validation and bootstrap.
+
+For cross validation, we often let the numbers of the folds be 10. And in bootstrap, the equation $\lim_{n\to\infty}(1-\flatfrac{1}{m})^m=\flatfrac{1}{e}$ is used to analyse the probality.
+
+\subsection{Performance}
+\begin{defi}[Sensitivity and FPR]
+	Now we consider that
+	\begin{table}[H]
+		\centering
+		\begin{tabular}{c|c|c}
+			       & prediction+ & prediction- \\ \hline
+			Actual & 1           & 0           \\ \hline
+			1      & TP          & FP          \\ \hline
+			0      & FN          & TN
+		\end{tabular}
+	\end{table}
+	\[
+		TPR=\frac{TP}{TP+FN},\,
+		FPR=\frac{FP}{TN+FP}
+		.\]
+\end{defi}
+\begin{remark}
+	{\textbf{ROC}} space and \href{https://baike.baidu.com/item/AUC/19282953}{\textbf{AUC}} is also useful to select models.
+
+\end{remark}
+
+\begin{defi}[Precision and recall]
+	\[
+		precision=\frac{TP}{TP+FP},\,
+		recall=\frac{TP}{TP+FN}
+		.\]
+\end{defi}
+
+
+\[
+	F_\beta=\frac{(1+\beta^2)\times P\times R}{\beta^2\times P+R}
+	.\]
+$\beta$ depends on the preference of Precision and Recll.
+
+
+\subsection{Bias-Variance Decomposition}
+\begin{thm}
+	\[
+		\begin{aligned}
+			E(f; D) & =
+			bias^2(x)+var(x)+\varepsilon^2
+			\\&=
+			(\bar{f}(x)-y)^2+\mathbb{E}_D[f(x; D)-\bar{f}(x)]+\mathbb{E}_D[(y_D-y)^2]
+		\end{aligned}
+	\]
+
+\end{thm}

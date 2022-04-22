@@ -1,0 +1,43 @@
+\section{Generalized Linear Models}
+
+\subsection{The Exponential Family}
+\begin{defi}
+	We say that a class of distributions is in the exponential family if it can be written in the form
+	\[
+		p(y;\eta)=b(y)\exp(\eta^TT(y)-a(\eta))
+	.\] 
+\end{defi}
+
+Here, $\eta$ is called the \textbf{natural parameter} (also called the canonical parameter) of the distribution; $T(y)$ is the \textbf{sufficient statistic} (for the distributions we consider, it will often be the case that $T(y) = y$); and $a(\eta)$ is the \textbf{$\log$ partition function}. The quantity $e^{-a(\eta)}$ essentially plays the role of a normalization constant, that makes sure the distribution $p(y; \eta)$ sums/integrates over $y$ to 1.
+
+\subsection{Constructing GLMs}
+
+\begin{enumerate}
+	\item 
+		$y\mid x; \theta\sim\mathrm{ExponentialFamily}(\eta)$. I.e., given $x$ and $\theta$, the distribution of $y$ follows some exponential family distribution, with parameter $\eta$.
+	\item 
+		Given $x$, our goal is to predict the expected value of T(y) given x.
+		In most of our examples, we will have $T(y) = y$, so this means we would like the prediction $h(x)$ output by our learned hypothesis $h$ to satisfy $h(x) = \=E[y|x]$. 
+		(Note that this assumption is satisfied in the choices for $h_\theta(x)$ for both logistic regression and linear regression. 
+		For instance, in logistic regression, we had $h_\theta (x) = p(y = 1| x; \theta) = 0 \cdot p(y = 0 | x; \theta) + 1 \cdot p(y = 1| x; \theta) = E[y|x; \theta].$)
+	\item
+		he natural parameter $\eta$ and the inputs x are related linearly: 
+		$\eta = \theta^T x$. (Or, if $\eta$ is vector-valued, then $\eta_i = \theta_i^T x$.)
+\end{enumerate}
+\begin{eg}[Logistic Rrgression]
+	Note that: $y|x; \theta\sim\mathrm{Bernoulli}(\phi)$.
+	Then we have $\mathbb{E}[y|x;\theta]=\phi$.
+	Thus
+	\[
+		h_\theta(x)=\mathbb{E}[y|x;\theta]=\phi=\frac{1}{1+e^{-\eta}}
+			=\frac{1}{1+e^{-\theta^Tx}}
+	.\] 
+	If we have a training set of n examples$\{(x^i, y^i); i = 1,\cdots, n\}$ and would like to learn the parameters $\theta_i$ of this model, we would begin by writing down the log-likelihood
+	\[
+		\+L(\theta)
+		=
+		\sum_{i=1}^n\log p(y^i|x^i; \theta)
+		=
+		\sum_{i=1}^n\log \qty[\qty(\frac{1}{1+e^{-\theta^Tx}})^{1\{y^i=1\}}\qty(\frac{e^{-\theta^Tx}}{1+e^{-\theta^Tx}})^{1\{y^i=0\}}]
+	.\] 
+\end{eg}
