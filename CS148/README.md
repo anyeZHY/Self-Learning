@@ -7,3 +7,7 @@
 #### Assignment1
 
 - Get a glimpse of the Blender APP.
+
+#### Assignment2
+
+- Changing the focal length matters.
