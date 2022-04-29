@@ -18,11 +18,12 @@ Next, we give another equivalent formulation of the Hard-SVM rule as a quadratic
 	Input: $(x^1,^1),\cdots,(x^m,y^m)$
 
 	Solve:
-	\[
-		(w_0,b_0)=\argmin_{(w,b)}\norm{w}^2
+	\begin{equation}
+		(w_0,b_0)=\argmin_{(w,b)}\frac{1}{2}\norm{w}^2
 		\ \ \ 
-		\text{s.t. }\forall i, y^i\qty(w^Tx^i+b)\ge 1
-	.\]
+		\text{s.t. }\forall i, y^i\qty(w^Tx^i+b)\ge 1.
+		\label{svm}
+	\end{equation}
 
 	Output: $\hat{w}=\flatfrac{w_0}{\norm{w_0}}$, $\hat{b}=\flatfrac{b_0}{\norm{w_0}}$
 \end{md}
@@ -58,16 +59,45 @@ Next, we give another equivalent formulation of the Hard-SVM rule as a quadratic
 \begin{md}
 	Input: $(x^1,^1),\cdots,(x^m,y^m)$
 
+	Parameter: $\lambda>0$
+
 	Solve:
 	\[
-		(w_0,b_0)=\argmin_{(w,b)}\norm{w}^2
-		\ \ \ 
-		\text{s.t. }\forall i, y^i\qty(w^Tx^i+b)\ge 1
+		\begin{aligned}
+			& \min_{w,b,\xi}\qty(\lambda\norm{w}^2+\frac{1}{m}\sum_{i=1}^m\xi_i)
+			\\
+			&\text{s.t. }\forall i,\ y^i\qty(w^Tx^i+b)\ge 1-\xi_i \text{ and }
+			\xi_i\ge 0
+		\end{aligned}
 	.\]
 
-	Output: $\hat{w}=\flatfrac{w_0}{\norm{w_0}}$, $\hat{b}=\flatfrac{b_0}{\norm{w_0}}$
+	Output: $w,b$
 \end{md}
-\subsubsection{The Sample Complexity of Soft-SVM*}
+\begin{defi}[hinge loss]
+	\[
+		l^{\mathrm{hinge}}((w,b),(x,y))=\max\qty{0,1-yw^Tx+b}
+	.\]
+\end{defi}
+Now we just need to optimize $\lambda\norm{w}^2+\+L^{\mathrm{hinge}}(w,b)$.
 \subsection{Duality}
-\subsection{Implementing Soft-SVM Using SGD}
+The lagrangian for EQ.\ref{svm} is:
+\[
+	\+L(w,b,\alpha)=\frac{1}{2}\norm{w}^2-\sum_{i=1}^n\alpha_i\qty[y^i\qty(w^Tx^i+b)-1]
+.\] 
 
+
+\subsection{Implementing Soft-SVM Using SGD}
+\begin{algorithm}
+	\caption{SGD for Solving Soft-SVM}
+	\begin{algorithmic}
+		\STATE $\*\theta=\*0$
+		\FOR{$i=1,\cdots,T$} 
+		\STATE $w^{(t)}=\flatfrac{1}{\lambda t}\times\*\theta$
+		\STATE Choose $i$ uniformly at random for $[m]$
+		\IF{$y_iw^Tx^i<1$}
+		\STATE $\*\theta\gets\*\theta+y^ix^i$
+		\ENDIF
+		\ENDFOR
+		\RETURN $\sum_{t=1}^T w^{(t)}/T$
+	\end{algorithmic}
+\end{algorithm}

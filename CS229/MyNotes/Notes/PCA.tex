@@ -1,0 +1,69 @@
+\section{Dimensionality Reduction}%
+Dimensionality reduction is the process of taking data in a high dimensional space and mapping it into a new space whose dimensionality is much smaller.
+
+\subsection{Principal Component Analysis}
+In PCA, we have a compressing matrix $W\in\RR^{n,d}$ and a recovering matrix  $U\in\RR^{d,n}$.For given data  $x_1,x_2,\cdots,x_m$, we aim at solving the problem:
+\begin{equation}
+	\argmin_{W,U}\sum^{n}_{i=1} \norm{x_i-UWx_i}^2
+	\label{naive_pca}
+\end{equation}
+
+\begin{lemma}
+	Let $(U,W)$ be a solution of Equation \ref{naive_pca}. Then $U^TU=I$ and  $W=U^T$. (The columns of $U$ are orthonormal.)
+\end{lemma}
+
+\begin{prf}
+	Let $R=\qty{UWx:x\in\RR^d}$ which is an $n$ dimensional linear subspace of $\RR^d$. Let $\in\RR^{n,d}$ be a matrix satisfies  the range of $V$ is  $R$ and  $V^TV=I$.
+	Then $\norm{x-Vy}^2=\norm{x}^2+\norm{y}^2-2y^TV^Tx$. Minimizing this w.r.t. $y$ gives that  $y=V^Tx$.
+\end{prf}
+
+By the fact that
+\[
+	\norm{x-UU^Tx}^2=\norm{x}^2-\-{trace}(U^Txx^TU)
+.\] We could rewrite Equation \ref{naive_pca} as follows:
+\[
+	\argmax_{U\in\RR^{d,n}:U^TU=I}\-{trace}\qty[U^T \qty(\sum^{m}_{i=1}x_ix_i^T) U]
+.\] 
+\begin{thm}
+	Let $x_1,\cdots, x_m$ be arbitrary vectors in $\RR^d$,
+	let $A = \sum^{m}_{i=1}  x_ix_i^T$, 
+	and let $u1,\cdots, u_n$ be $n$ eigenvectors of the matrix $A$ corresponding to the largest $n$ eigenvalues of $A$.
+	Then, the solution to the PCA optimization problem given in Equation \ref{naive_pca} is to set $U$ to be the matrix whose columns are $u_1,\cdots,u_n$ and to set $W = U^T$.
+\end{thm}
+\begin{prf}
+	Let $VDV^T$ be the spectral decomposition of  $A$ (suppose that $D_{1,1}\ge \cdots\ge D_{d,d}$) and let $B=V^TU$. We have
+	 \[
+		 \mathrm{trace}\qty(U^TAU)
+		 =
+		 \mathrm{trace}\qty(B^TDB)
+		 =
+		 \sum^{d}_{j=1} D_{j,j}\sum^{n}_{i=1} B^2_{j,i}
+		 \le
+		 \max_{\*\beta\in[0,1]^d:\norm{\*\beta}\le n}\sum^{d}_{j=1} D_{j,j}\beta_j
+		 =
+		 \sum^{n}_{j=1} D_{j,j}
+	.\] 
+	Nota Bene: $B^TB=I$ which entails  $ \sum^{d}_{j=1} \sum^{n}_{i=1} B^2_{j,i}=n $.
+\end{prf}
+\newpage
+\subsection{Implementation}
+\begin{algorithm}[htbp]
+	\caption{PCA algorithm}
+	\label{alg:pca}
+	\begin{algorithmic}[1]
+		\renewcommand{\algorithmicrequire}{\textbf{Input:}}
+		\renewcommand{\algorithmicensure}{\textbf{Output:}}
+		\renewcommand{\algorithmiccomment}[1]{\hfill\textit{\textcolor{blue}{\##1}}}
+		\REQUIRE A matrix of $m$ examples $X \in R^{m,d}$ and number of components $n$.
+		\IF{$m>d$}
+		\STATE $A=X^TX$
+		\STATE Let $u_1,\cdots,u_n$ be the eigenvetors of $A$ with largest eigrnvalues
+		\ELSE
+		\STATE $B=XX^T$
+		\STATE Let $v_1,\cdots,v_n$ be the  eigenvetors of $B$ with largest eigrnvalues
+		\STATE $\forall i$, $u_i=\flatfrac{X^Tv_i}{\norm{X^Tv_i}}$
+		\ENDIF
+		\RETURN $u_1,\cdots,u_n$
+	\end{algorithmic} 
+\end{algorithm}
+The algorithm use a more efficient method when $d>m$. The complexity is $\+O(m^2d)$ under this case.
