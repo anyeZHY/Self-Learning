@@ -11,3 +11,8 @@
 #### Assignment2
 
 - Changing the focal length matters.
+
+#### Assignment3
+
+- Implement reflection and transmission recursively.
+- Compute reflectivity via Schlick’s Approximation, Fresnel Equations.
