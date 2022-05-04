@@ -14,10 +14,19 @@ def main(train_path, valid_path, save_path):
 
     # *** START CODE HERE ***
     # Train a logistic regression classifier
-    # Plot decision boundary on top of validation set set
+    # Plot decision boundary on top of validation set
     # Use np.savetxt to save predictions on eval set to save_path
+    clf = LogisticRegression(theta_0=np.zeros_like(x_train[0]))
+    clf.fit(x_train,y_train)
+    x_vad, y_vad = util.load_dataset(valid_path, add_intercept=True)
+    y_predict = clf.predict(x_vad)
+    np.savetxt(save_path, y_predict)
+    util.plot(x_vad, y_vad, clf.theta, save_path=train_path[:3]+'.pdf', correction=1)
+    # print(np.mean(y_predict == y_vad))
     # *** END CODE HERE ***
 
+def sigmoid(x):
+    return 1 / (1 + np.exp(-x))
 
 class LogisticRegression:
     """Logistic regression with Newton's Method as the solver.
@@ -51,6 +60,27 @@ class LogisticRegression:
             y: Training example labels. Shape (n_examples,).
         """
         # *** START CODE HERE ***
+        N, D = x.shape
+        theta = self.theta
+        if theta is None:
+            theta = np.zeros(D)
+        i = 0
+        for i in range(self.max_iter):
+            mu = theta.dot(x.T)
+            dJ = - np.sum((y-sigmoid(mu)).reshape(N, -1) * x, axis=0) / N
+            if np.sum(np.abs(dJ)) <= self.eps:
+                break
+            if i%1000 == 0:
+                if self.verbose:
+                    # print(sigmoid(mu))
+                    loss = -np.mean(y * np.log(sigmoid(mu)+1e-6) + (1-y) * np.log(1-sigmoid(mu)+1e-6))
+                    print('iter: {}, loss: {}'.format(i,loss))
+            theta = theta - self.step_size * dJ
+        if self.verbose:
+            print('total iter: {}, theta: {}'.format(i+1, theta))
+        self.theta = theta
+        # H = np.sum(sigmoid(mu) * (1 - sigmoid(mu))) * (x.T @ x) / N
+        # print(H.shape)
         # *** END CODE HERE ***
 
     def predict(self, x):
@@ -63,6 +93,7 @@ class LogisticRegression:
             Outputs of shape (n_examples,).
         """
         # *** START CODE HERE ***
+        return sigmoid(x.dot(self.theta))>0.5
         # *** END CODE HERE ***
 
 if __name__ == '__main__':

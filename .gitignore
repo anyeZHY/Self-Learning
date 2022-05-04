@@ -10,7 +10,7 @@ Rsrs/
 *.xdv
 *.fdb_latexmk
 *.gz
-
+*.idea
 
 # Byte-compiled / optimized / DLL files
 __pycache__/

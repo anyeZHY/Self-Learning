@@ -1,2 +1,13 @@
 \begin{answer}
+	\[
+		\begin{aligned}
+			\mathrm{LHS}
+			&=
+			\frac{p(x|y=1)p(y=1)}
+			{p(x|y=1)p(y=1)+p(x|y=0)p(y=0)}
+			\\[5pt]&=
+			\frac{1}
+			{1+\exp\qty{[\Sigma^{-1}(\mu_0-\mu_1)]^Tx+\mu_1^T\Sigma^{-1}\mu_1/2-\mu_0^T\Sigma^{-1}\mu_0/2+\log[\flatfrac{(1-\phi)}{\phi}]}}
+		\end{aligned}
+	.\] 
 \end{answer}
