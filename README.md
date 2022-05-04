@@ -33,11 +33,11 @@ This repository includes all the courses I learned by myself. You could find the
 
 #### CS224n: Natural Language Processing with Deep Learning, Stanford University.
 
-- Course website: [https://web.stanford.edu/class/cs224n/index.html](
+- Course website: [https://web.stanford.edu/class/cs224n/index.html](https://web.stanford.edu/class/cs224n/index.html)
 
 #### 15-458: Discrete Differential Geometry, Carnegie Mellon University
 
-- Course website: https://csd.cmu.edu/course-profiles/15-458-Discrete-Differential-Geometry](https://csd.cmu.edu/course-profiles/15-458-Discrete-Differential-Geometry)
+- Course website: [https://csd.cmu.edu/course-profiles/15-458-Discrete-Differential-Geometry](https://csd.cmu.edu/course-profiles/15-458-Discrete-Differential-Geometry)
 
 ## "Halt"
 
