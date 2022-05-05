@@ -24,7 +24,6 @@ def main(train_path, valid_path, save_path):
     np.savetxt(save_path, y_predict.astype(int))
 
     util.plot(x_vad, y_vad, clf.theta, save_path=train_path[:3]+'_gda.pdf', correction=1)
-    print(np.mean(y_predict==y_vad))
     # *** END CODE HERE ***
 
 
@@ -95,7 +94,7 @@ class GDA:
         """
         # *** START CODE HERE ***
         r = np.sum(self.theta * x, axis=1)
-        return (1 / (1 + np.exp(-r)))>0.5
+        return 1 / (1 + np.exp(-r))
         # *** END CODE HERE
 
 if __name__ == '__main__':

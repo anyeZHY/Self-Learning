@@ -93,7 +93,7 @@ class LogisticRegression:
             Outputs of shape (n_examples,).
         """
         # *** START CODE HERE ***
-        return sigmoid(x.dot(self.theta))>0.5
+        return sigmoid(x.dot(self.theta))
         # *** END CODE HERE ***
 
 if __name__ == '__main__':
