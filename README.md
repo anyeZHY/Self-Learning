@@ -13,10 +13,6 @@ This repository includes all the courses I learned by myself. You could find the
 
 ## What I am learning
 
-#### CS142: Web Applications, Stanford University.
-
-- Course website: [https://web.stanford.edu/class/cs142/index.html](https://web.stanford.edu/class/cs142/index.html)
-
 #### CS148: Introduction to Computer Graphics and Imaging, Stanford University
 
 - Course website: [https://web.stanford.edu/class/cs148/lectures.html](https://web.stanford.edu/class/cs148/lectures.html)
@@ -34,6 +30,14 @@ This repository includes all the courses I learned by myself. You could find the
 #### CS224n: Natural Language Processing with Deep Learning, Stanford University.
 
 - Course website: [https://web.stanford.edu/class/cs224n/index.html](https://web.stanford.edu/class/cs224n/index.html)
+
+#### CS285: Deep Reinforcement Learning, UC Berkeley
+
+- Course website: [http://rail.eecs.berkeley.edu/deeprlcourse/](http://rail.eecs.berkeley.edu/deeprlcourse/)
+
+#### CS142: Web Applications, Stanford University.
+
+- Course website: [https://web.stanford.edu/class/cs142/index.html](https://web.stanford.edu/class/cs142/index.html)
 
 #### 15-458: Discrete Differential Geometry, Carnegie Mellon University
 
