@@ -80,18 +80,72 @@ Next, we give another equivalent formulation of the Hard-SVM rule as a quadratic
 \end{defi}
 Now we just need to optimize $\lambda\norm{w}^2+\+L^{\mathrm{hinge}}(w,b)$.
 \subsection{Duality}
-The lagrangian for EQ.\ref{svm} is:
+The Lagrangian for EQ.\ref{svm} is:
 \[
-	\+L(w,b,\alpha)=\frac{1}{2}\norm{w}^2-\sum_{i=1}^n\alpha_i\qty[y^i\qty(w^Tx^i+b)-1]
+	\+L(w,b,\alpha)=\frac{1}{2}\norm{w}^2-\sum_{i=1}^n\alpha_i\qty[y^{(i)}\qty(w^Tx^{(i)}+b)-1]
 .\] 
-
-
+By the fact that $\nabla\+L=0$
+ \[
+	 w=\sum^{n}_{i=1} \alpha_iy^{(i)}x^{(i)}
+	 \qand
+	 \sum^{n}_{i=1} \alpha_iy^{(i)}=0
+.\] 
+Plug them back we obtain
+\[
+    \begin{aligned}
+		\max_\alpha\ \ & \+L(\alpha)
+		=
+		\sum^{n}_{i=1} \alpha_i - 
+		\frac{1}{2} \sum^{n}_{i=1} \sum^{n}_{j=1}
+		y^{(i)}y^{(j)}\alpha_i\alpha_j
+		\inner{x^{(i)}}{x^{(j)}}
+		\\\text{s.t. }&\ \ 
+		\alpha_i\ge 0
+		\\&
+		\sum^{n}_{i=1} \alpha_iy^{(i)}=0
+    \end{aligned}
+.\] 
+Note that
+\[
+	b=-\frac{\max_{y^{(i)}=-1}w^Tx^{(i)}+\min_{y^{(i)}=1}w^Tx^{(i)}}{2}
+.\] 
+\subsection{SMO}
+Consider the dual form of Soft-SVM
+\[
+    \begin{aligned}
+		\max_\alpha\ \ & \+L(\alpha)
+		=
+		\sum^{n}_{i=1} \alpha_i - 
+		\frac{1}{2} \sum^{n}_{i=1} \sum^{n}_{j=1}
+		y^{(i)}y^{(j)}\alpha_i\alpha_j
+		\inner{x^{(i)}}{x^{(j)}}
+		\\\text{s.t. }&\ \ 
+		0\le \alpha_i\le C
+		\\&
+		\sum^{n}_{i=1} \alpha_iy^{(i)}=0
+    \end{aligned}
+.\] 
+The dual-complementrity conditions are
+\[
+    \begin{cases}
+		\alpha_i=0   &\implies y^{(i)}(w^Tx^{(i)}+b)\ge 1 \\
+		\alpha_i=C   &\implies y^{(i)}(w^Tx^{(i)}+b)\le 1 \\
+		0<\alpha_i<C &\implies y^{(i)}(w^Tx^{(i)}+b)=   1
+    \end{cases}
+.\] 
+Now we introduce SMO (sequential minimal optimization).
+Repeat till convergence:
+\begin{enumerate}
+	\item Select some pair $\alpha_i$ and $\alpha_j$ to update next (using a heuristic that tries to pick the two that will allow us to make the biggest progress towards the global maximum).
+	\item
+		Reoptimize $W(\alpha)$ with respect to αi and $\alpha_j$, while holding all the other $\alpha_k$'s $(k\ne i, j)$ fixed.
+\end{enumerate}
 \subsection{Implementing Soft-SVM Using SGD}
 \begin{algorithm}
 	\caption{SGD for Solving Soft-SVM}
 	\begin{algorithmic}
 		\STATE $\*\theta=\*0$
-		\FOR{$i=1,\cdots,T$} 
+		\FOR{$t=1,\cdots,T$} 
 		\STATE $w^{(t)}=\flatfrac{1}{\lambda t}\times\*\theta$
 		\STATE Choose $i$ uniformly at random for $[m]$
 		\IF{$y_iw^Tx^i<1$}
