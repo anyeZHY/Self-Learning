@@ -17,6 +17,20 @@ def main(lr, train_path, eval_path, save_path):
     # *** START CODE HERE ***
     # Fit a Poisson Regression model
     # Run on the validation set, and use np.savetxt to save outputs to save_path
+    clf = PoissonRegression(step_size=lr)
+    clf.fit(x_train, y_train)
+    x_eval, y_eval = util.load_dataset(eval_path, add_intercept=True)
+    y_predict = clf.predict(x_eval)
+    np.savetxt(save_path, y_predict)
+
+    plt.scatter(y_eval, y_predict)
+    plt.xlabel('Predict')
+    plt.ylabel('Ground truth')
+    tmp = np.append(y_eval,y_eval)
+    plt.xlim([-1, max(tmp)+1])
+    plt.ylim([-1, max(tmp)+1])
+    plt.plot([-1,max(tmp)+1],[-1, max(tmp)+1], '--r')
+    plt.savefig(save_path[:-3]+'pdf')
     # *** END CODE HERE ***
 
 
@@ -53,6 +67,21 @@ class PoissonRegression:
             y: Training example labels. Shape (n_examples,).
         """
         # *** START CODE HERE ***
+        N, D = x.shape
+        print(x.shape)
+        theta = np.zeros(D) if self.theta is None else self.theta
+        for i in range(self.max_iter):
+            grad = np.sum((y.reshape(N,1) - np.exp(x @ theta.reshape((D,1)))) * x, axis=0)
+            if np.sum(np.abs(grad))<self.eps:
+                break
+            theta += self.step_size * grad
+            if self.verbose and i%100==0 :
+                prob = np.mean(y * (x @ theta) - np.exp(x @ theta))
+                print('iter: {}, prob: {}'.format(i, prob))
+            # break
+        if self.verbose:
+            print('theta: {}'.format(theta))
+        self.theta = theta
         # *** END CODE HERE ***
 
     def predict(self, x):
@@ -65,6 +94,8 @@ class PoissonRegression:
             Floating-point prediction for each input, shape (n_examples,).
         """
         # *** START CODE HERE ***
+        N, D = x.shape
+        return np.exp(x @ self.theta.reshape((D, -1)))
         # *** END CODE HERE ***
 
 if __name__ == '__main__':

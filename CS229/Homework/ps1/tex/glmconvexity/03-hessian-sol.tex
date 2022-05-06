@@ -1,2 +1,18 @@
 \begin{answer}
+	\[
+		\+L=-\sum\log\qty[b(y)\exp(\eta^Ty-a(\eta))]
+	.\] 
+	Then
+	\[
+		\pdv{L}{\theta}
+		=
+		\sum -yx+x\pdv{\theta}a(\theta^Tx)
+	\] 
+	and
+	\[
+		\pdv[2]{L}{\theta}
+		=
+		\sum \pdv{\theta}a\qty(\theta^Tx)\, xx^T
+		=\sum\-{Var}[Y;\eta]\, xx^T
+	.\] 
 \end{answer}

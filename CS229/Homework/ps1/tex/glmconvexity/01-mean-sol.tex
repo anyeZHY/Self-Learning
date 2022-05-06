@@ -1,2 +1,24 @@
 \begin{answer}
+	\[
+		\begin{aligned}
+			&
+			\pdv{\eta}\int_\+D
+			b(y)\exp(\eta^Ty-a(\eta))\,\dd y
+			\\[5pt]=&
+			\int_\+D
+			\qty[
+				b(y)\exp(\eta^Ty-a(\eta))
+				\qty(y-\pdv{\eta}a(\eta))
+			]
+			\,\dd y
+			\\[5pt]=&
+			\mathbb{E}[Y;\eta]-\pdv{\eta}a(\eta)
+			\\[5pt]=&
+			0
+		\end{aligned}
+	.\] 
+	Thus
+	\[
+		\mathbb{E}[Y;\eta]=\pdv{\eta}a(\eta)
+	.\] 
 \end{answer}
