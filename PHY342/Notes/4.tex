@@ -1,0 +1,100 @@
+\section{Quantum Mechanics in Three Dimensions}
+\subsection{The schrodinger Equation}
+The generalization oto three dimensions is straitforward.
+\[
+	i\hbar\pdv{\Psi}{t}=-\frac{\hbar^2}{2m}\nabla^2\Psi+V\Psi
+\] 
+where
+\[
+	\nabla^2\equiv\pdv[2]{x}+\pdv[2]{y}+\pdv[2]{z}
+\] 
+is the \textbf{Laplacian}. Also the normalization conditions reads $\int\Psi\dd^3\*r=1$.
+If  $V$ is independent of time, there will be a complete set of stationary states
+ \[
+	 \Psi_n(\*r,t)=\psi_n(\*r)e^{-\flatfrac{iE_nt}{\hbar}}
+.\] 
+Now we adopt spherical coordinates
+\begin{lemma}[Laplacian in spherical coordinates]
+	\[
+		\nabla^2
+		=
+		\frac{1}{r^2}\pdv{r}\qty(r^2\pdv{r})
+		+
+		\frac{1}{r^2\sin\theta}\pdv{\theta}\qty(\sin\theta\pdv{\theta})
+		+
+		\frac{1}{r^2\sin^2\theta}\qty(\pdv[2]{\phi})
+	.\] 
+\end{lemma}
+
+If $\Psi=R(r)Y(\theta,\phi)$ and $Y=\Theta(\theta)\Phi(\phi)$, we could separate $r,\theta$ and $\phi$ into three equations with important \textit{separation constants}.
+
+\subsubsection{The angular Equation}
+The $\phi$ equation is easy
+ \[
+	 \dv[2]{\Phi}{\phi}=-m^2\Phi \implies \Phi=e^{im\phi}
+.\] 
+When $\phi$ advances by  $2\pi$, we return to the same point in space, so it is natural to require that  $\Phi(\phi+2\pi)=\Phi(\phi)$. From this it follows that  $m$ must be an integer:
+ \[
+    m=0,\pm 1,\pm, 2,\cdots
+.\] 
+The $\theta$ equation reads
+ \[
+	 \sin\theta\dv{\theta}\qty(\sin\theta\dv{\Theta}{\theta})
+	 +
+	 \Big[l(l+1)\sin^2\theta-m^2\Big]\Theta
+	 =
+	 0
+.\] 
+\begin{lemma}[Legendre function]
+	The solution of $\Theta$ is
+	\[
+	    \Theta(\theta)=AP^m_l(\cos\theta)
+	.\] 
+	where
+	\[
+	    P^m_l(x)
+		\defeq
+		(-1)^m(1-x^2)^{\flatfrac{m}{2}}\qty(\dv{x})^m P_l(x)
+	\] 
+	is the \textbf{associated Legendre function}, defined by the \textbf{Rodrigues formula}
+	\[
+	    P_l(x)
+		\defeq
+		\frac{1}{2^l l!}\qty(\dv{x})^l(x^2-1)^l
+	.\] 
+\end{lemma}
+\begin{remark}
+	Notice that $l$ must be a non-negative integer, for Rodrigues formula to make sense; moreover, if  $m>l$, we cwill have  $P^m_l(x)=0$. For any given  $l$, then there are  $2l+1$ possible values of  $m$:
+	\[
+		l=0,1,2\cdots \qand m=-l,\,-l+1,\cdots,l-1,\,l
+	.\] 
+\end{remark}
+
+By normalization condition
+\[
+	\int_{0}^{\pi} \int_0^{2\pi} \abs{Y}^2\sin\theta \,\dd \theta\,\dd\phi=1
+,\] 
+we deduce that
+\[
+    Y^m_l(\theta,\phi)
+	=
+	\sqrt{\frac{2l+1}{4\pi}\frac{(l-m)!}{(l+m)!}}e^{im\phi}P^m_l(\cos\theta)
+.\] 
+\subsubsection{The Radial Equation}
+\begin{thm}[Radial equation]
+	\[
+		-\frac{\hbar^2}{2m}\dv[2]{u}{r}+\qty[V+\frac{\hbar^2}{2m}\frac{l(l+1)}{r^2}]u=Eu
+	\] 
+	where $u(r)\equiv rR(r)$.
+\end{thm}
+\begin{remark}[Effective potential]
+	\[
+		V_{\mathrm{eff}}=V+\frac{\hbar^2}{2m}\frac{l(l+1)}{r^2}
+	\] and the latter term is the so-called \textbf{centrifugal potential}.
+\end{remark}
+
+\subsection{The Hydrogen Atom}
+To be continued.
+
+\subsection{Angular Momentum}
+
