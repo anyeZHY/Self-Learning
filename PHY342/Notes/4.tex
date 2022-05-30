@@ -75,11 +75,12 @@ By normalization condition
 	\int_{0}^{\pi} \int_0^{2\pi} \abs{Y}^2\sin\theta \,\dd \theta\,\dd\phi=1
 ,\] 
 we deduce that
-\[
+\begin{equation}
     Y^m_l(\theta,\phi)
 	=
 	\sqrt{\frac{2l+1}{4\pi}\frac{(l-m)!}{(l+m)!}}e^{im\phi}P^m_l(\cos\theta)
-.\] 
+	\label{yml}
+\end{equation}
 \subsubsection{The Radial Equation}
 \begin{thm}[Radial equation]
 	\[
@@ -94,7 +95,100 @@ we deduce that
 \end{remark}
 
 \subsection{The Hydrogen Atom}
-To be continued.
+The radical equation says:
+\[
+    	-\frac{\hbar^2}{2m}\dv[2]{u}{r}
+		+
+		\qty[-\frac{e^2}{4\pi \varepsilon_0r}+\frac{\hbar^2}{2m}\frac{l(l+1)}{r^2}]u
+		=
+		Eu
+.\] 
+To tidy up the notation, let
+\[
+	\kappa=\frac{\sqrt{-2mE_e}}{\hbar},\ \ \ 
+	\rho=\kappa r \qand
+	\rho_0=\frac{m_e e^2}{2\pi\varepsilon_0\hbar^2\kappa}
+\] 
+so that
+\[
+	\dv[2]{u}{\rho}=\qty[1-\frac{\rho_0}{\rho}+\frac{l(l+1)}{\rho^2}]u
+.\] 
+Intuitively, ($\dv*[2]{u}{\rho}=u$ when $\rho\to+\infty$ and $\dv*[2]{u}{\rho}=\flatfrac{ul(l+1)}{\rho^2}$ when $\rho\to_0$)
+\[
+	u(\rho)=\rho^{l+1}e^{-\rho}v(\rho)
+.\] 
+Now we assume the solution, $v(\rho)$, can be expressed as a power series in  $\rho$:
+ \[
+	 v(\rho)=\sum_{j=0}^{+\infty}c_j\rho^j
+.\] 
+Plugin it into the radical equation
+\[
+	c_{j+1}=\qty{\frac{2(j+l+1)-\rho_0}{(j+1)(j+2l+2)}}c_j
+.\] 
+\begin{thm}
+	The series must terminate. I.e., $\exists\, N\in \NN$, $c_N=0$, which means
+	\[
+	    2(N+l)-\rho_0=0
+	.\] 
+\end{thm}
+\begin{prf}
+	For large $j$, the recursion formula says
+	\[
+		c_{j+1}\approx \frac{2}{j+1}c_j
+		\implies
+		c_{j+1}\approx \frac{2^j}{j!}c_0
+	.\] 
+	Then
+	\[
+		v(\rho)=c_0e^{2\rho} \qand u(\rho)=c_0\rho^{l+1}e^{\rho}
+	\] 
+	which could not be \textbf{NORMALIZED}.
+\end{prf}
+\begin{thm}[Bohr Formula \& Radius]
+	\[
+		E_n=-\qty[\frac{m_e}{2\hbar^2}\qty(\frac{e^2}{4\pi\varepsilon_0})^2]
+		\qand
+		a=\frac{4\pi\varepsilon_0\hbar^2}{m_e e^2}
+	.\]
+\end{thm}
+
+Finally, we obtain the spactial wave functions
+\[
+	\psi_{nlm}(r,\theta,\phi)=R_{nl}(r)Y^m_l(\theta,\phi)
+\] 
+where $R_{nl}(r)=r^{-1}\rho^{l+1}e^{-\rho}v(\rho)$ and $Y^m_l(\theta,\phi)$ is defined by Eq \ref{yml}. 
+\begin{remark}[Laguerre Polynomials]
+	\[
+		v(\rho)=L^{2l+1}_{n-l-1}(2\rho)
+	\] 
+	where
+	\[
+		L^p_q(x)\defeq(-1)^p\qty(\dv{x})^pL_{p+q}(x)
+	\] 
+	is an associated Lguerre polynomial, and
+	\[
+		L_q(x)\defeq\frac{e^x}{q!}\qty(\dv{x})^q(e^{-x}x^q)
+	\] 
+	is the $q^{\text{th}}$ Laguerre polynomial. 
+	\textbf{``Brutally''},
+	\[
+		\psi_{nlm}=\sqrt{\qty(\frac{2}{na})^3\frac{(n-l-1)!}{2n(n+l)!}}
+		e^{-\flatfrac{r}{na}}\qty(\frac{2r}{na})^l
+		\Big[L^{2l+1}_{n-l-1}(\flatfrac{2r}{na})\Big]Y^m_l(\theta,\phi)
+	.\]
+\end{remark}
+
+
+
+\begin{defi}[Quantum Numbers]
+	Intuitively,
+	 \begin{itemize}
+		\item 
+			$n$ is the \textbf{principal quantum number}; it tells you the energy of electron.
+		\item
+			$l$ is called  \textbf{azimuthal quantum number} and $m$ the \textbf{megnetic quantum number}; they are related to the angular momentum of the electron.
+	\end{itemize}
+\end{defi}
 
 \subsection{Angular Momentum}
 
