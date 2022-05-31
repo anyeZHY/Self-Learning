@@ -23,3 +23,41 @@ A general framework for growing a decision tree is as follows. We start with a t
 		\RETURN a root $r$ whose left subtree is  $T_1$ and the right tree is $T_2$
 	\end{algorithmic} 
 \end{algorithm}
+
+\begin{defi}[Entropy]
+	The surprise oof observing a discrete random variable $Y$ takes on value  $k$ is $-\log(Y=k)$. Then the entropy of  $Y$ is the expected syrprise:
+	 \[
+	    H(Y)=-\sum_k \Pr(Y=k)\log \Pr(Y=k)
+	.\] 
+\end{defi}
+
+When we choose a split-feature, we want to reduce entropy in some way. Thus we want to minimize the \textbf{conditional entropy} $H(Y|X_j)$:
+ \[
+    \min H(Y|X_j)\defeq
+	\Pr(X_j=1)H(Y|X_j=1)+\Pr(X_j=0)H(Y|X_j=0)
+\] which is equivalent to
+\[
+    \max I(X_j;Y)
+	\defeq
+	H(Y)-H(Y|X_j)
+.\]
+The quantity $I(X_j;Y)$ is known as the mutual information between  $X_j$ and $Y$.
+\begin{defi}[Gini impurity/index]
+	\[
+		G(Y)=\sum_k \Pr(Y=k)\sum_{j\ne k}\Pr(Y=j)=1-\sum_k\Pr^2(Y=k)
+	.\]
+\end{defi}
+
+Similarly, we minimize the quantity $G(Y|X_j)\defeq\Pr(X_j=1)G(Y|X_j=1)+\Pr(X_j=0)G(Y|X_j=0)$.
+
+\subsection{Random Forest}
+Random forests are a specific \textbf{ensemble method} where the individual models are decision trees trained in a randomized way so as to \textbf{reduce correlation} among them.
+Because the basic decision tree building algorithm is deterministic, it will produce the same tree every time if we give it the same dataset and use the same algorithm hyperparameters (stopping conditions, etc.).
+
+Random forests are typically randomized in the following ways:
+\begin{itemize}
+	\item 
+		Per-classifier \textbf{bagging} (short for \textbf{bootstrap aggregating}): sample some number m < n of datapoints uniformly with replacement, and use these as the training set.
+	\item
+		Per-split \textbf{feature randomization}: sample some number  $k < d$ of features as candidates to be considered for this split.
+\end{itemize}
