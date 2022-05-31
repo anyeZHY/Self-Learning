@@ -1,0 +1,25 @@
+\section{Desicion Tree}
+
+A general framework for growing a decision tree is as follows. We start with a tree with a single leaf (the root) and assign this leaf a label according to a majority vote among all labels over the training set. We now perform a series of iterations. On each iteration, we examine the effect of splitting a single leaf. We define some “gain” measure that quantifies the improvement due to this split. Then, among all possible splits, we either choose the one that maximizes the gain and perform it, or choose not to split the leaf at all.
+
+\begin{algorithm}[htbp]
+	\caption{Iterative Dichotomizer 3}
+	\label{ID3}
+	\begin{algorithmic}[1]
+		\renewcommand{\algorithmicrequire}{\textbf{Input:}}
+		\renewcommand{\algorithmicensure}{\textbf{Output:}}
+		\renewcommand{\algorithmiccomment}[1]{\hfill\textit{\textcolor{blue}{\##1}}}
+		\REQUIRE training set $S$, feature subset $A\subseteq[d]$
+		\IF{all examples in $S$ are labeled by 1}
+		\RETURN a leaf 1
+		\ELSIF{all examples in $S$ are labeled by 0}
+		\RETURN a leaf 0
+		\ELSIF{$A=\emptyset$}
+		\RETURN leaf whose value is the majority labels in $S$
+		\ENDIF
+		\STATE $j\gets \argmax_{i\in A}\mathrm{Gain}(S,i)$\\[2pt]
+		\STATE $T_1\gets \mathrm{ID3}\big(\{(x,y)\in S:x_j=1\},\flatfrac{A}{\{j\}}\big)$\\[2pt]
+		\STATE $T_2\gets \mathrm{ID3}\big(\{(x,y)\in S:x_j=0\},\flatfrac{A}{\{j\}}\big)$\\[2pt]
+		\RETURN a root $r$ whose left subtree is  $T_1$ and the right tree is $T_2$
+	\end{algorithmic} 
+\end{algorithm}
