@@ -1,7 +1,15 @@
 \section{Misc}
 \subsection{Before Schrodinger}
-
+First we will introduce the theories before Schrodinger Equation.
 \subsubsection{Black Body Radiation}
+\[
+	M_\lambda(T)=\dv{E_\lambda}{\lambda},\ \ 
+	\alpha_\lambda(T)=\frac{E_{\-{absorb}}}{E_{\-{in}}} \qand
+	\frac{M_\lambda(T)}{\alpha_\lambda(T)}=M_0(\lambda,T)=\-{Const}
+.\] 
+\begin{law}
+	Stefan–Boltzmann law: $M(T)=\sigma T^4$. Wien's displacement law: $\lambda_mT=b$.	
+\end{law}
 
 \subsubsection{Photoelectric Effect}
 \[
@@ -17,9 +25,10 @@ The quantization of angular momentum says:
 \[
     L=mvr=n\hbar
 .\] 
-
-\subsection{Parity}
-
+Also,
+\[
+	\frac{1}{\lambda}=R_{\infty}\qty(\frac{1}{m^2}-\frac{1}{n^2})
+.\]
 \subsection{Probability current}
 
 \begin{defi}[Probability current]
@@ -37,3 +46,74 @@ Then
 	\pdv{\rho}{t}+\nabla J = 0
 \] 
 where $\displaystyle \rho=\int\Psi^*\Psi\,\dd{x}$.
+
+\subsection{Two-state Quantum System}
+\[
+	i\hbar\pdv{t}\mqty(C_1\\C_2)
+	=
+	\mqty(E_1&A\\A&E_2)\mqty(C_1\\C_2)
+.\]
+Then,
+\[
+	C_1+k_\pm C_2=\Big[C_1(0)+k_\pm C_2(0)\Big]\exp[{-\dfrac{i(E_1+k_\pm A)}{\hbar}t}]
+\] 
+where $k\pm=\flatfrac{\Big(E_2-E_1\pm\sqrt{(E_2-E_1)^2+4A^2}\Big)}{2A}$.
+\begin{lemma}
+	\[
+	   C_1(t)=\frac{1}{k_+ - k_-}
+		\qty{
+			k_+
+			\Big[C_{10}+k_- C_{20}\Big]
+			e^{-\dfrac{i(E_1+k_- A)}{\hbar}t}
+			-
+			k_-
+			\Big[C_{10}+k_+ C_{20}\Big]
+			e^{-\dfrac{i(E_1+k_+ A)}{\hbar}t}
+		}
+	\] 
+	and
+	\[
+	   C_2(t)=\frac{1}{k_+ - k_-}
+		\qty{
+			\Big[C_{10}+k_- C_{20}\Big]
+			e^{-\frac{i(E_1+k_- A)}{\hbar}t}
+			-
+			\Big[C_{10}+k_+ C_{20}\Big]
+			e^{-\frac{i(E_1+k_+ A)}{\hbar}t}
+		}
+	\] 
+\end{lemma}
+What if $C_{10}=1, C_{20}=0$ and $E_1=E_2=0$ ?
+\[
+	C_1(t)
+	=
+	\frac{1}{2}\qty[
+		e^{\flatfrac{iAt}{\hbar}}
+		+
+		e^{\flatfrac{-iAt}{\hbar}}
+	]
+	\qand
+	C_2(t)
+	=
+	\frac{1}{2}\qty[
+		e^{\flatfrac{iAt}{\hbar}}
+		-
+		e^{\flatfrac{-iAt}{\hbar}}
+	]
+\] which entails that
+\[
+    C_1(t)=\cos(\flatfrac{At}{\hbar})
+	\qand
+    C_2(t)=\sin(\flatfrac{At}{\hbar})
+.\] 
+
+\subsection{Famous Experiments}
+\begin{table}[H]
+	\centering
+	\begin{tabular}{lc}
+		Milikan+Compton & Wave-particle Duality\\
+		Davisson-Germer & de Broglie Formula\\
+		Zeeman & Quantization of Angular Momentum\\
+		Stern-Gerlach & Electronic Spin
+	\end{tabular}
+\end{table}

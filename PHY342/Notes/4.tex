@@ -178,18 +178,54 @@ where $R_{nl}(r)=r^{-1}\rho^{l+1}e^{-\rho}v(\rho)$ and $Y^m_l(\theta,\phi)$ is d
 	.\]
 \end{remark}
 
+\subsection{Angular Momentum}
 
+By the formula $\*L=\*r\times\*p$
+ \[
+	 L_x=yp_z-zp_y\ (\text{cyc})
+.\] 
+Then we deduce the fundamental commutation relations for angular momentum
+\[
+	[L_x,L_y]=i\hbar L_z
+	\qand
+	[L^2,L_x]=0
+	\ \ \ \ 
+	(\text{cyc})
+.\] 
+According to generalized uncertainty principle,
+\[
+	\sigma_{L_x}\sigma_{L_y}\ge \frac{\hbar}{2}\abs{\angbr{L_z}}
+.\] 
+With the help of ladder operator $L_\pm=L_x\pm iL_y$, we could obtain the eigenvalues and the eigenfunctions for angular momentum.
+\begin{thm}[Eigenvalues and Eigenfunctions for $L$]
+	\[
+	    L^2 Y^m_l=l(l+1)\hbar^2Y^m_l
+		\qand
+		L_zY^m_l=m\hbar Y^m_l
+	.\] 
+\end{thm}
+\begin{remark}
+	Spherical harmonics (Eq \ref{yml}) are the eigenfunctions of $L^2$ and $L_z$.
+\end{remark}
+
+\subsection{Spin}
+
+Similarly, 
+\[
+    [S_x,S_y]=i\hbar S_z,\ \ \ 
+	S^2\ket{s\ m}=s(s+1)\hbar^2\ket{s\ m}
+	\qand
+	S_z\ket{s\ m}=m_s\hbar\ket{s\ m}
+.\] 
 
 \begin{defi}[Quantum Numbers]
 	Intuitively,
 	 \begin{itemize}
 		\item 
-			$n$ is the \textbf{principal quantum number}; it tells you the energy of electron.
+			$n\ (0,1,2,\cdots)$ is the \textbf{principal quantum number}; it tells you the energy of electron.
 		\item
-			$l$ is called  \textbf{azimuthal quantum number} and $m$ the \textbf{megnetic quantum number}; they are related to the angular momentum of the electron.
+			$l\ (0,1,2,\cdots,n-1)$ is called  \textbf{azimuthal quantum number} and $m_l\ (0,\pm1,\pm2,\cdots,\pm l)$ the \textbf{megnetic quantum number}; they are related to the angular momentum of the electron.
+		\item
+			$s\, (\pm\flatfrac{1}{2})$ is the \textbf{spin quantaum number}. And $m_s\in\{-s,-s+1,\cdots,s\}$.
 	\end{itemize}
 \end{defi}
-
-\subsection{Angular Momentum}
-
-
