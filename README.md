@@ -11,6 +11,10 @@ This repository includes all the courses I learned by myself. You could find the
 
 - Course website: [http://cs231n.stanford.edu](http://cs231n.stanford.edu)
 
+#### Physics342: Quantum Mechanics I, Reed University.
+
+- Material: “Introduction to Quantum Mechanics, 3rd ed.”, Cambridge University Press, 2018.
+
 ## What I am learning
 
 #### CS148: Introduction to Computer Graphics and Imaging, Stanford University
@@ -20,10 +24,6 @@ This repository includes all the courses I learned by myself. You could find the
 #### CS229: Machine Learning, Stanford University.
 
 - Course website: [http://cs229.stanford.edu](http://cs229.stanford.edu)
-
-#### Physics342: Quantum Mechanics I, Reed University.
-
-- Material: “Introduction to Quantum Mechanics, 3rd ed.”, Cambridge University Press, 2018.
 
 ## Coming Soon
 
