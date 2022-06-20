@@ -11,6 +11,10 @@ This repository includes all the courses I learned by myself. You could find the
 
 - Course website: [http://cs231n.stanford.edu](http://cs231n.stanford.edu)
 
+#### CS229: Machine Learning, Stanford University.
+
+- Course website: [http://cs229.stanford.edu](http://cs229.stanford.edu)
+
 #### Physics342: Quantum Mechanics I, Reed University.
 
 - Material: “Introduction to Quantum Mechanics, 3rd ed.”, Cambridge University Press, 2018.
@@ -21,15 +25,15 @@ This repository includes all the courses I learned by myself. You could find the
 
 - Course website: [https://web.stanford.edu/class/cs148/lectures.html](https://web.stanford.edu/class/cs148/lectures.html)
 
-#### CS229: Machine Learning, Stanford University.
-
-- Course website: [http://cs229.stanford.edu](http://cs229.stanford.edu)
-
-## Coming Soon
-
 #### CS224n: Natural Language Processing with Deep Learning, Stanford University.
 
 - Course website: [https://web.stanford.edu/class/cs224n/index.html](https://web.stanford.edu/class/cs224n/index.html)
+
+#### 15-458: Discrete Differential Geometry, Carnegie Mellon University
+
+- Course website: [https://csd.cmu.edu/course-profiles/15-458-Discrete-Differential-Geometry](https://csd.cmu.edu/course-profiles/15-458-Discrete-Differential-Geometry)
+
+## Coming Soon
 
 #### CS285: Deep Reinforcement Learning, UC Berkeley
 
@@ -38,10 +42,6 @@ This repository includes all the courses I learned by myself. You could find the
 #### CS142: Web Applications, Stanford University.
 
 - Course website: [https://web.stanford.edu/class/cs142/index.html](https://web.stanford.edu/class/cs142/index.html)
-
-#### 15-458: Discrete Differential Geometry, Carnegie Mellon University
-
-- Course website: [https://csd.cmu.edu/course-profiles/15-458-Discrete-Differential-Geometry](https://csd.cmu.edu/course-profiles/15-458-Discrete-Differential-Geometry)
 
 ## "Halt"
 
