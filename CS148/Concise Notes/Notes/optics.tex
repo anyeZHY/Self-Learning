@@ -1,0 +1,36 @@
+\section{Optics}
+\begin{defi}
+	\textbf{Radiant Intensity} of a light source: $I(\omega)=\dv*{\Phi}{\omega}$
+	\begin{itemize}
+		\vspace{-0.5em}\item Total light power (exiting a light) per unit solid angle
+		\vspace{-0.5em}\item Measure of how strong a (point) light source is
+	\end{itemize}
+\end{defi}
+\begin{defi}
+	\textbf{Irradiance} on a surface: $E=\dv*{\Phi}{A}$
+	\begin{itemize}
+		\vspace{-0.5em}\item Total light power (hitting a surface) per unit surface area.
+		\vspace{-0.5em}\item Measure of how much light is hitting a surface.
+		\vspace{-0.5em}\item Varies based on distance from the light and the tilting angle of the surface.
+	\end{itemize}
+\end{defi}
+Some engineering approximations are as follows.
+\begin{itemize}
+	\item BRDF (Bidirectional Reflectance Distribution Function): models how much light is reflected.
+	\item BTDF (Bidirectional Transmittance Distribution Function): models how much light is transmitted.
+	\item BSSRDF (Bidirectional Surface Scattering Reflectance Distribution Function): combined reflection/transmission model.
+\end{itemize}
+
+Now we define the \textbf{lighting equation}:
+\[
+	L_o(\omega_0)=\sum_{i\in\mathrm{in}}L_{o\text{ due to }i}(\omega_i,\omega_o)
+\]
+where the BRDF gives each of $L_{o\text{ due to }i}(\omega_i,\omega_o)$.
+Then we have
+\[
+	L_o(\omega_0)=\int_{i\in\mathrm{in}}\mathrm{BRDF}(\omega_i,\omega_0)\dd{E_i(\omega_i)}
+	=
+	\int_{i\in\mathrm{in}}\mathrm{BRDF}(\omega_i,\omega_0)L_i\cos\theta_i\dd{\omega_i}
+.\] 
+
+Diffuse Materials: a surface reflects light equally in all directions. I.e., $\mathrm{BRDF}=\mathrm{Const}$.
