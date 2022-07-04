@@ -1,0 +1,37 @@
+\section{Geometry}
+\textbf{Loop Subdivision}
+\begin{itemize}
+	\vspace{-0.5em}\item Subdivide each triangle into 4 sub-triangles
+	\vspace{-0.5em}\item Move both the old/new vertices
+	\vspace{-0.5em}\item Repeat (if desired)
+	\vspace{-0.5em}\item C2 continuity almost everywhere (except at some extraordinary vertices where itʼs only C1)
+\end{itemize}
+
+\vspace{0.5em}\textbf{Cardinal Cubic Splines}
+
+4 control points $\{p_{i-1},p_{i},p_{i+1},p_{i+2}\}$. What we want is  $f(u)=a_0+a_1u+a_2u^2+a_3u^3$ such that
+\[
+	f(0)=p_i\qcomma f(1)=p_{i+1} \qcomma f'(0)=s(p_{i+1}-p_{i-1}) \qand f'(1)=s(p_{i+2}-p_i)
+.\]
+
+\subsection{Transformation}
+\textbf{Rotation}
+\[
+	R_x=\mqty(1 & 0 & 0 \\ 0 & \cos\theta & -\sin\theta \\ 0 & \sin\theta & \cos\theta)
+	\qcomma 
+	R_y=\mqty(\cos\theta & 0 & \sin\theta \\ 0 & 1 & 0 \\ -\sin\theta & 0 & \cos\theta)
+	\qand
+	R_z=\mqty(\cos\theta & -\sin\theta & 0 \\ \sin\theta & \cos\theta & 0 \\ 0 & 0 & 1)
+\] 
+\textbf{Scaling}
+\[
+	S=\mqty(s_1 & 0 & 0 \\ 0 & s_1 & 0 \\ 0 & 0 & s_3)
+.\] 
+\textbf{Homogeneous Coordinates}
+ \[
+	 \vec{p}_H=\mqty(x & y & z & 1)^T
+.\] 
+Then we have
+\[
+	\mqty(\*M & \*{t} \\ \*O & 1)\mqty(\*x \\ 1) = \mqty(\*M\*x+\*t \\ 1)
+\] where $\*M\in\RR^{3\times 3}$ and  $\*O\in\RR^{1\times3}$.
