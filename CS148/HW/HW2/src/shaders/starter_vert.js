@@ -9,11 +9,12 @@ export default `#version 300 es
     uniform mat4 uMeshToWorldRotMatrix;
     uniform mat4 uWorldToClipSpaceMatrix;
     
-    flat out vec4 vNormal;
+    out vec4 vNormal;
 
 void main(void) {
   // set vertex normal (to be passed to fragment shader)
   vNormal = uMeshToWorldRotMatrix * aVertexNormal;
+  vNormal = vec4(normalize(abs(vNormal.xyz)),1.0);
 
   // set world space vertex position
   vec4 vPosition = uMeshToWorldMatrix * aVertexPosition;

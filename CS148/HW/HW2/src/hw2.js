@@ -1,12 +1,12 @@
 //define global constants
-const IMAGE_PREFIX = "normals"; //you'll change this for each checkpoint 
-const MAX_OUT_FRAMES = 0; //set this to 9 to write out images, set back to zero when you're debugging
-const OBJ_FILE = "assets/teapot.obj"; //obj file to load
+const IMAGE_PREFIX = "specular"; //you'll change this for each checkpoint 
+const MAX_OUT_FRAMES = 9; //set this to 9 to write out images, set back to zero when you're debugging
+const OBJ_FILE = "assets/bunny.obj"; //obj file to load
 var TIME = 0.0;
 
 //load in shader content
-import vsSource from "./shaders/starter_vert.js"; //change this to ./shaders/phong_vert.js for the second part of the homework
-import fsSource from "./shaders/starter_frag.js"; //change this to ./shaders/phong_frag.js for the second part of the homework
+import vsSource from "./shaders/phong_vert.js"; //change this to ./shaders/phong_vert.js for the second part of the homework
+import fsSource from "./shaders/phong_frag.js"; //change this to ./shaders/phong_frag.js for the second part of the homework
 
 //run main function
 main();
@@ -31,6 +31,8 @@ async function main() {
     },
     uniformLocations: {
       ambientColor: gl.getUniformLocation(shaderProgram, 'uAmbientColor'),
+      diffuseColor: gl.getUniformLocation(shaderProgram, 'uDiffuseColor'),
+      specularColor: gl.getUniformLocation(shaderProgram, 'uSpecularColor'),
       // TODO: do the same for diffuse and specular
       lightPosition: gl.getUniformLocation(shaderProgram, 'uLightPosition'),
       lightColor: gl.getUniformLocation(shaderProgram, 'uLightColor'),
@@ -177,6 +179,10 @@ function drawScene(gl, programInfo, buffers, deltaTime) {
 
   gl.uniform4fv(programInfo.uniformLocations.ambientColor,
       programInfo.uniformValues.ambientColor);
+  gl.uniform4fv(programInfo.uniformLocations.diffuseColor,
+      programInfo.uniformValues.diffuseColor);
+  gl.uniform4fv(programInfo.uniformLocations.specularColor,
+      programInfo.uniformValues.specularColor);
   // TODO: do the same for diffuse and specular
   gl.uniform4fv(programInfo.uniformLocations.lightColor,
       programInfo.uniformValues.lightColor);
