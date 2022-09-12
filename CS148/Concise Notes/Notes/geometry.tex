@@ -27,11 +27,22 @@
 \[
 	S=\mqty(s_1 & 0 & 0 \\ 0 & s_1 & 0 \\ 0 & 0 & s_3)
 .\] 
-\textbf{Homogeneous Coordinates}
- \[
-	 \vec{p}_H=\mqty(x & y & z & 1)^T
+\subsection{Homogeneous Coordinates}
+
+\begin{defi}[Homogeneous Coordinates]
+	\textbf{Goal}: to represent translation with matrices.
+	In general, the homogeneous coordinates of a point in 3D are:
+	\[
+		\vec{p}_H=\mqty(wx & wy & wz & w)^T
+	\]
+	where $w\ne 0$.
+\end{defi}
+Let the forth component be $1$, we have:
+\[
+	\vec{p}_H=\mqty(x & y & z & 1)^T
 .\] 
-Then we have
+Finally,
 \[
 	\mqty(\*M & \*{t} \\ \*O & 1)\mqty(\*x \\ 1) = \mqty(\*M\*x+\*t \\ 1)
-\] where $\*M\in\RR^{3\times 3}$ and  $\*O\in\RR^{1\times3}$.
+\]
+where $\*M\in\RR^{3\times 3}$ and  $\*O\in\RR^{1\times3}$.

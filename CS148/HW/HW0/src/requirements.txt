@@ -1,11 +1,10 @@
-argon2-cffi==21.3.0
-argon2-cffi-bindings==21.2.0
+argon2-cffi
 asttokens==2.0.5
 attrs==21.4.0
 backcall==0.2.0
-beautifulsoup4==4.11.1
-bleach==5.0.0
-certifi==2022.5.18.1
+beautifulsoup4
+bleach
+certifi
 cffi==1.15.0
 colorama==0.4.4
 cycler==0.11.0
